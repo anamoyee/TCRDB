@@ -7,6 +7,7 @@ from bump_version import main as _bump_version
 
 ALLOWED_CHARS = string.ascii_letters + string.digits + '-_/\\.: '
 
+
 def print_error(msg: str, *, and_exit: bool = True):
   print(f'\nUPLOAD FAILED: {msg}\n')
   if and_exit:
@@ -36,7 +37,7 @@ py -m twine upload dist/*
 """.strip().split('\n')
 
   for cmd in cmds:
-    # input(f'RUNNING: {cmd!r}\n>>> ')
+    print(f'RUNNING: {cmd!r}\n>>> ')
     subprocess.run(cmd, shell=True)
 
 def main():

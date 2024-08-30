@@ -1,6 +1,2 @@
+from .tcrdb_dddb import DefaultDictDB
 from .version import __version__
-
-print('hello')
-
-def main():
-  print('main')
