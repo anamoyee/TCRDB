@@ -4,7 +4,7 @@ import re as regex
 
 import setuptools
 
-PACKAGE_NAME = 'tcrdiscord'
+PACKAGE_NAME = 'tcrdb'
 
 version_file = p.Path(f'./{PACKAGE_NAME}/version.py')
 version_pattern = r"__version__\s*=\s*[\"'](.*?)[\"']"
@@ -14,14 +14,14 @@ __version__ = regex.search(version_pattern, version_file.read_text()).group(1)
 setuptools.setup(
   name=PACKAGE_NAME,
   version=__version__,
-  description='Various utilities for working with the hikari library and the Discord API.',
+  description='Base classes and utilities for simple python databases.',
   long_description=p.Path('./README.md').read_text(),
   long_description_content_type='text/markdown',
   url=f'https://github.com/anamoyee/{PACKAGE_NAME}',
   author='anamoyee',
   license='GPL-3.0 license',
   project_urls={
-    'Source': 'https://github.com/anamoyee/tcrdiscord',
+    'Source': f'https://github.com/anamoyee/{PACKAGE_NAME}',
   },
   classifiers=[
     'Development Status :: 3 - Alpha',

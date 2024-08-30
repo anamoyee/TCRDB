@@ -1,5 +1,3 @@
-# TCRDiscord
+# TCRDB
 
-Various utilities for working with the `hikari` library and the Discord API.
-
-
+Base classes and utilities for simple python databases.

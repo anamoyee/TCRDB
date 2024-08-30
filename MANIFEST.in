@@ -1,4 +1,4 @@
-graft tcrdiscord
+graft tcrdb
 global-exclude *.py[cod]
 include pyproject.toml
 include setup.py
