@@ -1,7 +1,8 @@
 import abc
+import contextlib
 import pathlib as p
 import shelve
-from collections.abc import Callable
+from collections.abc import Callable, Generator
 from functools import wraps
 from typing import Generic, TypeVar
 
@@ -43,7 +44,6 @@ class DefaultDictDB(Singleton, Generic[T], shelve.DbfilenameShelf):
 
     if key not in self:
       self[key] = self.default_factory(key)
-      self.sync()
     return super().__getitem__(key)
 
   @syncing_method
@@ -79,3 +79,10 @@ class DefaultDictDB(Singleton, Generic[T], shelve.DbfilenameShelf):
   def setdefault(self, *_, **__):
     """❌ You cannot use setdefault() on a default dict."""
     raise NotImplementedError('You cannot use setdefault() on a default dict.')
+
+  @contextlib.contextmanager
+  def cm(self, key: str):
+    """Get a context manager for getting, and after the context ends setting the mutable resource at a certain key in this DB."""
+    mutable_value = self[key]
+    yield mutable_value
+    self[key] = mutable_value
