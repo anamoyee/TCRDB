@@ -81,7 +81,7 @@ class DefaultDictDB(Singleton, Generic[T], shelve.DbfilenameShelf):
     raise NotImplementedError('You cannot use setdefault() on a default dict.')
 
   @contextlib.contextmanager
-  def cm(self, key: str):
+  def __call__(self, key: str):
     """Get a context manager for getting, and after the context ends setting the mutable resource at a certain key in this DB."""
     mutable_value = self[key]
     yield mutable_value

@@ -18,7 +18,7 @@ def test_default_dict_db():
 
   tcr.c(PFDB)
 
-  with PFDB.cm(1) as pf:
+  with PFDB(1) as pf:
     tcr.c(pf)
     pf.name += '!'
     tcr.c(pf)
