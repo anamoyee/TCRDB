@@ -10,7 +10,7 @@ class Profile(BaseModel):
   height: float = 6.9
 
 def test_default_dict_db():
-  class PfDB(tcrdb.DefaultDictDB[str], dir='./test1'):
+  class PfDB(tcrdb.DefaultDictDB[Profile], dir='./test1'):
     def default_factory(self, key: str) -> str:
       return Profile()
 

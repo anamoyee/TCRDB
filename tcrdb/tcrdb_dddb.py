@@ -86,3 +86,13 @@ class DefaultDictDB(Singleton, Generic[T], shelve.DbfilenameShelf):
     mutable_value = self[key]
     yield mutable_value
     self[key] = mutable_value
+
+  def hard_reset(self) -> None:
+    """Permanently delete the DB files. This may get you unstuck if your db is corrupted (and using `.clear()` fails) due to stuff like failed unpickling, though all your data will be lost.
+
+    This will not delete the folder itself, only files in it.
+    This action closes the shelf due to it being in a corrupt state if not closed.
+    """
+    self.close()
+    for file in self.path.parent.glob(f'{self.path.name}*'):
+      file.unlink()
